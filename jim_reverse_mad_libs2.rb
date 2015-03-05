@@ -1,4 +1,4 @@
-def get_words_from_file(file_name)
+  def get_words_from_file(file_name)
 	if !File.exists?(file_name)
 		say "#{file_name} doesn't exist!"
 		return
@@ -7,57 +7,57 @@ def get_words_from_file(file_name)
 	File.open(file_name, "r") do |f|
 		f.read
 	end.split
-end
+  end
 
-nouns = File.open("nouns.txt", "r") do |f|
+  nouns = File.open("nouns.txt", "r") do |f|
 	f.read
-end.split
+  end.split
 
-verbs = File.open("verbs.txt", "r") do |f|
+  verbs = File.open("verbs.txt", "r") do |f|
 	f.read
-end.split
+  end.split
 
-adjectives = File.open("adjectives.txt", "r") do |f|
+  adjectives = File.open("adjectives.txt", "r") do |f|
 	f.read
-end.split
+  end.split
 
-dictionary = {
+  dictionary = {
 	nouns: nouns,
 	verbs: verbs,
 	adjectives: adjectives
-}
+  }
 
-def say(msg)
+  def say(msg)
 	puts ("=> #{msg}")
-end
+  end
 
-def exit_with(msg)
+  def exit_with(msg)
 	say msg
 	exit
-end
+  end
 
-def get_input(word)
+  def get_input(word)
 	say "Input a #{word}:"
 	STDIN.gets.chomp
-end
+  end
 
-exit_with("No input file!") if ARGV.empty?
-exit_with("File doesn't exist!") if !File.exists?(ARGV[0])
+  exit_with("No input file!") if ARGV.empty?
+  exit_with("File doesn't exist!") if !File.exists?(ARGV[0])
 
-contents = File.open(ARGV[0], "r") do |f|
+  contents = File.open(ARGV[0], "r") do |f|
 	f.read
-end
+  end
 
-contents.gsub!("NOUN").each do |noun|
+  contents.gsub!("NOUN").each do |noun|
 	dictionary[:nouns].sample
-end
+  end
 
-contents.gsub!("VERB").each do |verb|
+  contents.gsub!("VERB").each do |verb|
 	dictionary[:verbs].sample
-end
+  end
 
-contents.gsub!("ADJECTIVE").each do |adjective|
+ contents.gsub!("ADJECTIVE").each do |adjective|
 	dictionary[:adjectives].sample
-end
+  end
 
-p contents
+  p contents
